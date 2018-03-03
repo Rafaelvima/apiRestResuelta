@@ -1,0 +1,18 @@
+## YAML Template.
+---
+driverDB: com.mysql.jdbc.Driver
+urlDB: jdbc:mysql://db4free.net:3307/clasesdaw?useSSL=false
+userDB: oscarnovillo
+passDB: c557ef
+##urlDB: jdbc:mysql://localhost:3306/baselocal?useSSL=false
+##userDB: root
+##passDB: admin
+mailFrom: alumno1@iesquevedo.es
+smtpServer: smtp.gmail.com
+smtpPort: 587
+mailPass: alumnodam2
+minutosParaValidar: 1
+longitudCodigo: 50
+apiKey: 85RGF64UTVVFM9GZYY1H8U69N77IHSAKV83SEP9XWYB4R7GYM2
+minutosValidarKey: 1
+totalConsultas: 10
