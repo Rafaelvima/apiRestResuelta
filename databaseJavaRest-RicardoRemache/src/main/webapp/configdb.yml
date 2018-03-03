@@ -1,0 +1,9 @@
+## YAML Template.
+driverDB: com.mysql.jdbc.Driver
+urlDB: jdbc:mysql://discutivo.com:3306/discu351_test?useSSL=false&useUnicode=true&characterEncoding=utf8
+userDB: discu351_test
+passDB: nohay2sin3
+numMaxPeticiones: 1000
+
+
+
