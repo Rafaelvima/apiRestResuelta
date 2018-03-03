@@ -16,6 +16,7 @@ import com.google.api.client.util.GenericData;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Alumno;
@@ -38,8 +39,8 @@ public class AlumnosREST {
         return instancia;
     }
 
-    public Alumno[] getAlumnos() {
-        Alumno[] alumnos = null;
+    public List<Alumno> getAlumnos() {
+        List<Alumno> alumnos = null;
         try {
             GenericUrl url = new GenericUrl(Api.END_POINT_ALUMNOS);
             RestApi instanceRest = RestApi.getInstance();
@@ -47,7 +48,8 @@ public class AlumnosREST {
             HttpRequest requestGoogle = instanceRest.crearServicio().buildGetRequest(url).setHeaders(instanceRest.getHeaderApikey());
             HttpResponse response = requestGoogle.execute();
             ObjectMapper mapper = new ObjectMapper();
-            alumnos = mapper.readValue(response.getContent(), Alumno[].class);
+            alumnos = mapper.readValue(response.getContent(),
+                    mapper.getTypeFactory().constructCollectionType(List.class, Alumno.class));
 
         } catch (HttpResponseException ex) {
             Logger.getLogger(AlumnosREST.class.getName()).log(Level.SEVERE, null, ex);

@@ -7,6 +7,7 @@ package servlets;
 
 import dao.AlumnosREST;
 import java.io.IOException;
+import java.util.List;
 
 import java.util.Map;
 
@@ -102,7 +103,7 @@ public class AlumnosServlet extends HttpServlet {
         if (messageToUser != null) {
             request.setAttribute(Constantes.resultadoQuery, messageToUser);
         }
-        Alumno[] listaAlumnos = instanceREST.getAlumnos();
+        List<Alumno> listaAlumnos = instanceREST.getAlumnos();
         request.setAttribute(Constantes.alumnosList, listaAlumnos);//envia la lista al jsp
         request.getRequestDispatcher("/" + Constantes.alumnosJSP).forward(request, response);
     }
