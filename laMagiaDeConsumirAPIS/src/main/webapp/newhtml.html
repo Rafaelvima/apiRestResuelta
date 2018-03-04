@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--
+mete los 2 objetos en una lista y pasas la lista a json
+espera un segundo
+Type type = new TypeToken<List>() {}.getType();
+List lista = (List) requestGoogle.execute().parseAs(type);
+Erasto - Last Saturday at 11:26 PM
+eso que hace?
+Callalokito - Last Saturday at 11:26 PM
+recoje el json y lo pasa a lista
+en la que tu tienes los dos objetos
+Erasto - Last Saturday at 11:27 PM
+donde esta puesto en tu ejemplo¿?
+Callalokito - Last Saturday at 11:27 PM
+en notas
+ahi estoy recibiendo 2 listas de objetos diferentes
+la de alumnos y la de asignaturas
+guardas todo dentro de una lista como si fuese un paquete que quieres mandar
+y luego pasas de lista a json y en el cliente de json a lista
+un vez con la lista en el cliente haces un lista.get(0) o lista.get(1) y eso te da los objetos que contiene
+si quieres sacar el nombre de un alumno pues seria lista.get(0).getNombre();
+si lo vas a mirar en mi ejemplo puede que te confundas un poco porque yo lo que mando y recibo es una lista que contiene 2 listas
+y para acceder a uno de los objetos seria lista.get(0).get(0).getNombre();
+Erasto - Last Saturday at 11:32 PM
+para pasar las listas a json se hace asi? en el servlet:
+List<Alumno> a = (alumno) json.get("alumno");
+noo perdona
+okok
+Callalokito - Last Saturday at 11:34 PM
+List datos = new ArrayList();
+
+List alumnos = al.getAllAlumnos();
+List asignaturas = as.getAllAsignaturas();
+datos.add(alumnos);
+datos.add(asignaturas);
+request.setAttribute("json", datos);
+ObjectMapper mapper = new ObjectMapper();
+
+        Object json = request.getAttribute("json");
+        if (json != null) {
+            mapper.writeValue(response.getOutputStream(), json);
+        }
+Erasto - Last Saturday at 11:37 PM
+vale aunque eso es la parte del servidor
+si desde el cliente quiero separar esa lista?
+Callalokito - Last Saturday at 11:38 PM
+asi pasas la lista a json
+Erasto - Last Saturday at 11:38 PM
+es asi?
+Callalokito - Last Saturday at 11:39 PM
+Type type = new TypeToken<List<List>>() {}.getType();
+List<List> lista = (List) requestGoogle.execute().parseAs(type);
+Erasto - Last Saturday at 11:39 PM
+List <Alumno> a = json.get("alumnos");
+Callalokito - Last Saturday at 11:39 PM
+asi pasas el json a una lista que contiene listas
+Erasto - Last Saturday at 11:39 PM
+siiii
+pero el paso siguiente
+es decir separar de ese json
+las dos listas
+Callalokito - Last Saturday at 11:40 PM
+HttpResponse datos = requestGoogle.execute();
+
+lista = objectMapper.readValue(datos.parseAsString(),objectMapper.getTypeFactory().constructCollectionType(List.class, Alumno.class));
+asi pasas un json  a una lista de alumnos
+Erasto - Last Saturday at 11:40 PM
+y lo mismo con asignaturas
+okokok
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>TODO write content</div>
+    </body>
+</html>
